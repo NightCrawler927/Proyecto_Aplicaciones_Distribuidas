@@ -25,20 +25,31 @@ functions:
     events:
       - httpApi:
           path: /pelicula
-          method: post 
+          method: post
   getPeliTable:
     handler: src/obtenerTodo.obtenerTodo
     events:
       - httpApi:
           path: /pelicula
-          method: get  
+          method: get
   getPeli:
     handler: src/obtenerPeli.obtenerPeli
     events:
       - httpApi:
           path: /pelicula/{id}
           method: get
-  
+  updatePeli:
+    handler: src/actualizarPeli.actualizarPeli
+    events:
+      - httpApi:
+          path: /pelicula/{id}
+          method: put
+  deletePeli:
+    handler: src/borrarPeli.borrarPeli
+    events:
+      - httpApi:
+          path: /pelicula/{id}
+          method: delete
 
 resources:
   Resources:

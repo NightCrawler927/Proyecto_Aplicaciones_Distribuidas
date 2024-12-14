@@ -14,13 +14,13 @@ exports.agregarPeli = async (event) => {
     precioventa,
   };
   await dynamodb
-  .put({
-    TableName: "InventarioPeliculas",
-    Item: newPeli,
-  })
-  .promise();
-    return {
-        statusCode: 200,
-        body: JSON.stringify(newPeli),
-    };
+    .put({
+      TableName: "InventarioPeliculas",
+      Item: newPeli,
+    })
+    .promise();
+  return {
+    statusCode: 200,
+    body: JSON.stringify(newPeli),
+  };
 };
