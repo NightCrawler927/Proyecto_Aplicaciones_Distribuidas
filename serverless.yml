@@ -6,6 +6,12 @@ service: ProyectoAplicacionesDistribuidas
 provider:
   name: aws
   runtime: nodejs20.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-east-1:692859937629:table/InventarioPeliculas
 
 functions:
   hello:
@@ -14,3 +20,36 @@ functions:
       - httpApi:
           path: /
           method: get
+  createPeli:
+    handler: src/agregarPeli.agregarPeli
+    events:
+      - httpApi:
+          path: /pelicula
+          method: post 
+  getPeliTable:
+    handler: src/obtenerTodo.obtenerTodo
+    events:
+      - httpApi:
+          path: /pelicula
+          method: get  
+  getPeli:
+    handler: src/obtenerPeli.obtenerPeli
+    events:
+      - httpApi:
+          path: /pelicula/{id}
+          method: get
+  
+
+resources:
+  Resources:
+    TaskTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: InventarioPeliculas
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
