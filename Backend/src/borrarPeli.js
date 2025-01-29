@@ -14,7 +14,7 @@ exports.borrarPeli = async (event) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: "Película eliminada",
+        message: "Película eliminada", 
       }),
     };
   } catch (error) {
