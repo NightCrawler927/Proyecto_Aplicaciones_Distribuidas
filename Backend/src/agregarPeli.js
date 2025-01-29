@@ -14,6 +14,7 @@ exports.agregarPeli = async (event) => {
     precioventa,
   };
   
+  
   await dynamodb
     .put({
       TableName: "InventarioPeliculas",
