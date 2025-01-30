@@ -1,95 +1,214 @@
+/* Estilos básicos */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
+h1, h2 {
     color: #333;
 }
 
-.flash {
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+.container {
+    margin-top: 20px;
 }
 
-.flash.success {
-    background-color: #d4edda;
-    color: #155724;
+/* Animación de entrada para el contenedor principal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.flash.danger {
-    background-color: #f8d7da;
-    color: #721c24;
+.container {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Animación para botones */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .btn {
-    padding: 10px 15px;
-    text-decoration: none;
-    color: white;
-    background-color: #28a745;
-    border-radius: 5px;
-    margin-right: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-danger {
-    background-color: #dc3545;
+.btn:hover {
+    animation: pulse 1s infinite;
 }
 
-.btn-cancel {
-    background-color: #6c757d;
+/* Animación para tarjetas */
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.card {
+    animation: cardEntrance 0.5s ease-out;
+    transition: box-shadow 0.3s ease;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
+/* Animación para la tabla */
+@keyframes tableRow {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-th {
-    background-color: #f2f2f2;
+.table tbody tr {
+    animation: tableRow 0.5s ease-out;
 }
 
-.detail-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+/* Animación para los mensajes flash */
+@keyframes flashMessage {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert {
+    animation: flashMessage 0.5s ease-out;
+}
+
+/* Animación para el formulario */
+@keyframes formEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    animation: formEntrance 0.8s ease-out;
 }
 
-label {
-    display: block;
-    margin-top: 10px;
+/* Animación para los botones de acción */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.btn-action {
+    transition: transform 0.3s ease;
 }
 
-button {
-    margin-top: 10px;
+.btn-action:hover {
+    animation: bounce 0.5s;
+}
+
+/* Animación para el título */
+@keyframes titleAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+h2 {
+    animation: titleAnimation 0.8s ease-out;
+}
+
+/* Animación para los detalles de la película */
+@keyframes detailEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.detail-container {
+    animation: detailEntrance 0.6s ease-out;
+}
+
+/* Animación para los inputs del formulario */
+@keyframes inputFocus {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+input:focus {
+    animation: inputFocus 0.3s ease-out;
+}
+
+/* Animación para el botón de eliminar */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.btn-danger:hover {
+    animation: shake 0.5s;
 }

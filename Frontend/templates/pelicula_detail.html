@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="detail-container">
-        <h2>Detalles de la Película</h2>
+    <div class="container mt-4">
+        <h2 class="mb-4">Detalles de la Película</h2>
         
         <!-- Detalles de la película -->
-        <div class="movie-details">
-            <p><strong>Título:</strong> {{ pelicula.titulo }}</p>
-            <p><strong>Género:</strong> {{ pelicula.genero }}</p>
-            <p><strong>Año de Lanzamiento:</strong> {{ pelicula.alanzamiento }}</p>
-            <p><strong>Stock Disponible:</strong> {{ pelicula.stockdisponible }}</p>
-            <p><strong>Precio de Venta:</strong> ${{ pelicula.precioventa }}</p>
+        <div class="card">
+            <div class="card-body">
+                <p><strong>Título:</strong> {{ pelicula.titulo }}</p>
+                <p><strong>Género:</strong> {{ pelicula.genero }}</p>
+                <p><strong>Año de Lanzamiento:</strong> {{ pelicula.alanzamiento }}</p>
+                <p><strong>Stock Disponible:</strong> {{ pelicula.stockdisponible }}</p>
+                <p><strong>Precio de Venta:</strong> ${{ pelicula.precioventa }}</p>
+            </div>
         </div>
 
         <!-- Botones de acción -->
-        <div class="action-buttons">
-            <a href="{{ url_for('index') }}" class="btn">Volver</a>
-            <a href="{{ url_for('editar_pelicula', id=pelicula.id) }}" class="btn">Editar</a>
+        <div class="mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver</a>
+            <a href="{{ url_for('editar_pelicula', id=pelicula.id) }}" class="btn btn-warning">Editar</a>
             <a href="{{ url_for('eliminar_pelicula', id=pelicula.id) }}" class="btn btn-danger"
                onclick="return confirm('¿Estás seguro de que deseas eliminar esta película?')">Eliminar</a>
         </div>

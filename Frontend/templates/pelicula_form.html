@@ -1,45 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="form-container">
-        <h2>{% if pelicula %}Editar Película{% else %}Agregar Película{% endif %}</h2>
+    <div class="container mt-4">
+        <h2 class="mb-4">{% if pelicula %}Editar Película{% else %}Agregar Película{% endif %}</h2>
 
         <!-- Formulario -->
-        <form method="POST" class="movie-form">
-            <div class="form-group">
-                <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" 
+        <form method="POST" class="bg-light p-4 rounded shadow">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título:</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" 
                        value="{{ pelicula.titulo if pelicula else '' }}" required>
             </div>
 
-            <div class="form-group">
-                <label for="genero">Género:</label>
-                <input type="text" id="genero" name="genero" 
+            <div class="mb-3">
+                <label for="genero" class="form-label">Género:</label>
+                <input type="text" class="form-control" id="genero" name="genero" 
                        value="{{ pelicula.genero if pelicula else '' }}" required>
             </div>
 
-            <div class="form-group">
-                <label for="alanzamiento">Año de Lanzamiento:</label>
-                <input type="text" id="alanzamiento" name="alanzamiento" 
+            <div class="mb-3">
+                <label for="alanzamiento" class="form-label">Año de Lanzamiento:</label>
+                <input type="text" class="form-control" id="alanzamiento" name="alanzamiento" 
                        value="{{ pelicula.alanzamiento if pelicula else '' }}" required>
             </div>
 
-            <div class="form-group">
-                <label for="stockdisponible">Stock Disponible:</label>
-                <input type="number" id="stockdisponible" name="stockdisponible" 
+            <div class="mb-3">
+                <label for="stockdisponible" class="form-label">Stock Disponible:</label>
+                <input type="number" class="form-control" id="stockdisponible" name="stockdisponible" 
                        value="{{ pelicula.stockdisponible if pelicula else '' }}" required>
             </div>
 
-            <div class="form-group">
-                <label for="precioventa">Precio de Venta:</label>
-                <input type="number" step="0.01" id="precioventa" name="precioventa" 
+            <div class="mb-3">
+                <label for="precioventa" class="form-label">Precio de Venta:</label>
+                <input type="number" step="0.01" class="form-control" id="precioventa" name="precioventa" 
                        value="{{ pelicula.precioventa if pelicula else '' }}" required>
             </div>
 
-            <div class="form-buttons">
+            <div class="d-flex justify-content-between">
                 <button type="submit" class="btn btn-primary">
                     {% if pelicula %}Actualizar{% else %}Agregar{% endif %}
                 </button>
-                <a href="{{ url_for('index') }}" class="btn btn-cancel">Cancelar</a>
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
