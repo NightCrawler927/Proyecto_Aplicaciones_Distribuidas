@@ -257,7 +257,7 @@ form {
 }
 
 body {
-    background: linear-gradient(-45deg, #dfcfc9, #cdff70, #2c2d22, #9ee9d7);
+    background: linear-gradient(-45deg, #dbc3ba, #cdff70, #cacbba, #abc0bb);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }

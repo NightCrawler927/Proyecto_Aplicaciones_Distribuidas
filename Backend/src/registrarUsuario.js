@@ -15,14 +15,14 @@ const registrarUsuario = async (event) => {
     const dynamodb = new AWS.DynamoDB.DocumentClient();
     console.log("Evento recibido:", event.body);
 
-    const { nombreUsuario, email, pass } = JSON.parse(event.body);
+    const { nombreUsuario, email, password } = JSON.parse(event.body);
     console.log("Datos recibidos:", { nombreUsuario, email });
 
     const userId = v4();
     console.log("UUID generado:", userId);
 
     // Encriptar la contraseña con bcryptjs
-    const hashedPassword = await bcryptjs.hash(pass, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
     console.log("Contraseña encriptada:", hashedPassword);
 
     // Generar el token
@@ -33,7 +33,7 @@ const registrarUsuario = async (event) => {
       userId,
       nombreUsuario,
       email,
-      pass: hashedPassword,
+      password: hashedPassword,
       token,
     };
 

@@ -4,10 +4,10 @@ const { generarJWT } = require("./utils/jwt.js");
 
 const loginUsuario = async (event) => {
   const dynamodb = new AWS.DynamoDB.DocumentClient();
-  const { email, pass } = JSON.parse(event.body);
+  const { email, password } = JSON.parse(event.body);
 
   // Mensaje de depuración - verificar los datos de entrada
-  console.log("Datos de entrada recibidos:", { email, pass });
+  console.log("Datos de entrada recibidos:", { email, password });
 
   // Buscar usuario en la base de datos
   const params = {
@@ -40,7 +40,7 @@ const loginUsuario = async (event) => {
     console.log("Usuario encontrado:", usuario);
 
     // Verificar la contraseña
-    const passwordValid = await bcrypt.compare(pass, usuario.pass);
+    const passwordValid = await bcrypt.compare(password, usuario.password);
     console.log("Contraseña válida:", passwordValid);
 
     if (!passwordValid) {
