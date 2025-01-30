@@ -1,31 +1,69 @@
 const { v4 } = require("uuid");
 const AWS = require("aws-sdk");
-const bcrypt = require("bcryptjs");
+const bcryptjs = require("bcryptjs");
+const { generarJWT } = require("./utils/jwt.js");
+const dotenv = require("dotenv");
 
-exports.registrarUsuario = async (event) => {
-  const dynamodb = new AWS.DynamoDB.DocumentClient();
-  const { nombreUsuario, email, contraseña } = JSON.parse(event.body);
-  const userId = v4();
+// Cargar variables de entorno
+dotenv.config();
 
-  // Encriptar la contraseña
-  const hashedPassword = await bcrypt.hash(contraseña, 10);
+// Configurar AWS DynamoDB
+AWS.config.update({ region: "us-east-1" });
 
-  const newUser = {
-    userId,
-    nombreUsuario,
-    email,
-    contraseña: hashedPassword, // Guardamos la contraseña encriptada
-  };
+const registrarUsuario = async (event) => {
+  try {
+    const dynamodb = new AWS.DynamoDB.DocumentClient();
+    console.log("Evento recibido:", event.body);
 
-  await dynamodb
-    .put({
-      TableName: "Usuarios",
-      Item: newUser,
-    })
-    .promise();
+    const { nombreUsuario, email, pass } = JSON.parse(event.body);
+    console.log("Datos recibidos:", { nombreUsuario, email });
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ mensaje: "Usuario registrado correctamente" }),
-  };
+    const userId = v4();
+    console.log("UUID generado:", userId);
+
+    // Encriptar la contraseña con bcryptjs
+    const hashedPassword = await bcryptjs.hash(pass, 10);
+    console.log("Contraseña encriptada:", hashedPassword);
+
+    // Generar el token
+    const token = await generarJWT(userId);
+    console.log("Token generado:", token);
+
+    const newUser = {
+      userId,
+      nombreUsuario,
+      email,
+      pass: hashedPassword,
+      token,
+    };
+
+    console.log("Guardando en DynamoDB:", newUser);
+
+    await dynamodb
+      .put({
+        TableName: "Usuarios", // ⚠️ Asegúrate de que esta tabla exista en AWS
+        Item: newUser,
+      })
+      .promise();
+
+    console.log("Usuario guardado correctamente en DynamoDB");
+
+    return {
+      statusCode: 201,
+      body: JSON.stringify({
+        mensaje: "Usuario registrado correctamente",
+        token,
+      }),
+    };
+  } catch (error) {
+    console.error("Error al registrar usuario:", error);
+
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Error interno del servidor", detalles: error.message }),
+    };
+  }
 };
+
+// Exportación en CommonJS
+module.exports = { registrarUsuario };

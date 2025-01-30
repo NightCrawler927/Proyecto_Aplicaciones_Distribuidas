@@ -7,7 +7,7 @@ provider:
   name: aws
   runtime: nodejs20.x
   environment:
-    JWT_KEY: ${env:JWT_KEY}
+    JWT_KEY: "haJSHdjksh!!1i27@askjdhm2nasa21"
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -53,6 +53,19 @@ functions:
       - httpApi:
           path: /pelicula/{id}
           method: delete
+  # Autentificación (login)
+  registrarUsuario:
+    handler: src/registrarUsuario.registrarUsuario
+    events:
+      - httpApi:
+          path: /usuario/registrar
+          method: post
+  loginUsuario:
+    handler: src/loginUsuario.loginUsuario
+    events:
+      - httpApi:
+          path: /usuario/login
+          method: post
 
 resources:
   Resources:
