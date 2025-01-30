@@ -1,13 +1,13 @@
-/* Estilos básicos */
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
-h1, h2 {
-    color: #333;
+h1, h2, h3 {
+    color: #343a40;
 }
 
 .container {
@@ -30,7 +30,112 @@ h1, h2 {
     animation: fadeIn 0.8s ease-out;
 }
 
-/* Animación para botones */
+/* Estilos para la barra de navegación */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+}
+
+/* Estilos para las tarjetas */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Estilos para la tabla */
+.table {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos para los botones */
+.btn {
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Animación para los botones */
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -43,134 +148,50 @@ h1, h2 {
     }
 }
 
-.btn {
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
 .btn:hover {
-    animation: pulse 1s infinite;
+    animation: pulse 0.5s ease-in-out;
 }
 
-/* Animación para tarjetas */
-@keyframes cardEntrance {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.card {
-    animation: cardEntrance 0.5s ease-out;
-    transition: box-shadow 0.3s ease;
-}
-
-.card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Animación para la tabla */
-@keyframes tableRow {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.table tbody tr {
-    animation: tableRow 0.5s ease-out;
-}
-
-/* Animación para los mensajes flash */
-@keyframes flashMessage {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* Estilos para los mensajes flash */
 .alert {
-    animation: flashMessage 0.5s ease-out;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease-out;
 }
 
-/* Animación para el formulario */
-@keyframes formEntrance {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
 }
 
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Estilos para el formulario */
 form {
-    animation: formEntrance 0.8s ease-out;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Animación para los botones de acción */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
+.form-group {
+    margin-bottom: 15px;
 }
 
-.btn-action {
-    transition: transform 0.3s ease;
+.form-control {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn-action:hover {
-    animation: bounce 0.5s;
-}
-
-/* Animación para el título */
-@keyframes titleAnimation {
-    0% {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-h2 {
-    animation: titleAnimation 0.8s ease-out;
-}
-
-/* Animación para los detalles de la película */
-@keyframes detailEntrance {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.detail-container {
-    animation: detailEntrance 0.6s ease-out;
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Animación para los inputs del formulario */
@@ -186,11 +207,22 @@ h2 {
     }
 }
 
-input:focus {
+.form-control:focus {
     animation: inputFocus 0.3s ease-out;
 }
 
-/* Animación para el botón de eliminar */
+/* Estilos para los botones de acción */
+.action-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilos para el botón de eliminar */
+.btn-danger:hover {
+    animation: shake 0.5s;
+}
+
 @keyframes shake {
     0% {
         transform: translateX(0);
@@ -209,6 +241,35 @@ input:focus {
     }
 }
 
-.btn-danger:hover {
-    animation: shake 0.5s;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+body {
+    background: linear-gradient(-45deg, #dfcfc9, #cdff70, #2c2d22, #9ee9d7);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

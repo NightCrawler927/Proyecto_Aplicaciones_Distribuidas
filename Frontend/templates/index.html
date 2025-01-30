@@ -2,7 +2,7 @@
 {% block content %}
     <!-- Botón para agregar nueva película -->
     <div class="mb-4">
-        <a href="{{ url_for('agregar_pelicula') }}" class="btn btn-primary">
+        <a href="{{ url_for('agregar_pelicula') }}" class="btn btn-primary" onclick="showLoading()">
             <i class="bi bi-plus-circle"></i> Agregar Película
         </a>
     </div>
@@ -31,12 +31,12 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <a href="{{ url_for('editar_pelicula', id=pelicula.id) }}" 
-                                   class="btn btn-warning btn-sm">
+                                   class="btn btn-warning btn-sm" onclick="showLoading()">
                                     <i class="bi bi-pencil"></i> Editar
                                 </a>
                                 <a href="{{ url_for('eliminar_pelicula', id=pelicula.id) }}" 
                                    class="btn btn-danger btn-sm"
-                                   onclick="return confirm('¿Estás seguro de que deseas eliminar esta película?')">
+                                   onclick="return confirm('¿Estás seguro de que deseas eliminar esta película?'); showLoading()">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </a>
                             </div>
@@ -52,4 +52,11 @@
         No hay películas registradas.
     </div>
     {% endif %}
+
+    <!-- Script para mostrar el spinner -->
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
 {% endblock %}

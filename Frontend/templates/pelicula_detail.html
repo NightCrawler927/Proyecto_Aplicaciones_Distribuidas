@@ -17,9 +17,16 @@
         <!-- Botones de acción -->
         <div class="mt-4">
             <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver</a>
-            <a href="{{ url_for('editar_pelicula', id=pelicula.id) }}" class="btn btn-warning">Editar</a>
+            <a href="{{ url_for('editar_pelicula', id=pelicula.id) }}" class="btn btn-warning" onclick="showLoading()">Editar</a>
             <a href="{{ url_for('eliminar_pelicula', id=pelicula.id) }}" class="btn btn-danger"
-               onclick="return confirm('¿Estás seguro de que deseas eliminar esta película?')">Eliminar</a>
+               onclick="return confirm('¿Estás seguro de que deseas eliminar esta película?'); showLoading()">Eliminar</a>
         </div>
     </div>
+
+    <!-- Script para mostrar el spinner -->
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
 {% endblock %}

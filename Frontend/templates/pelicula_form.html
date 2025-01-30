@@ -4,7 +4,7 @@
         <h2 class="mb-4">{% if pelicula %}Editar Película{% else %}Agregar Película{% endif %}</h2>
 
         <!-- Formulario -->
-        <form method="POST" class="bg-light p-4 rounded shadow">
+        <form method="POST" class="bg-light p-4 rounded shadow" onsubmit="showLoading()">
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título:</label>
                 <input type="text" class="form-control" id="titulo" name="titulo" 
@@ -43,4 +43,11 @@
             </div>
         </form>
     </div>
+
+    <!-- Script para mostrar el spinner -->
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
 {% endblock %}
