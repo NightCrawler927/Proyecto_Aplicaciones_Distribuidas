@@ -6,12 +6,15 @@ service: ProyectoAplicacionesDistribuidas
 provider:
   name: aws
   runtime: nodejs20.x
+  environment:
+    JWT_KEY: ${env:JWT_KEY}
   iamRoleStatements:
     - Effect: Allow
       Action:
         - dynamodb:*
       Resource:
         - arn:aws:dynamodb:us-east-1:692859937629:table/InventarioPeliculas
+        - arn:aws:dynamodb:us-east-1:692859937629:table/Usuarios
 
 functions:
   hello:
@@ -63,4 +66,15 @@ resources:
             AttributeType: S
         KeySchema:
           - AttributeName: id
+            KeyType: HASH
+    UserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Usuarios
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
             KeyType: HASH

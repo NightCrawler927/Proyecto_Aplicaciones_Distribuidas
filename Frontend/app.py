@@ -5,6 +5,7 @@ app = Flask(__name__)
 app.secret_key = "secret_key"
 BASE_URL = "https://6563frate2.execute-api.us-east-1.amazonaws.com"
 
+
 @app.route("/")
 def index():
     response = requests.get(f"{BASE_URL}/pelicula")
